@@ -1,6 +1,6 @@
 function getWaifus() {
-  let type = document.getElementById("type").value;
-  let category = document.getElementById("category").value;
+  let type = document.getElementById("type").value.toLowerCase();
+  let category = document.getElementById("category").value.toLowerCase();
   const url = `https://api.waifu.pics/many/${type}/${category}`;
 
   const requestData = { exclude: [] }; // Puedes agregar URLs que quieras excluir en este array
