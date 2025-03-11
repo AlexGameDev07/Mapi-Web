@@ -1,16 +1,38 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-image: url('https://images.unsplash.com/photo-1569470451072-68314f596aec?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9uZG8lMjBkZSUyMHBhbnRhbGxhJTIwbmVncm8lMjBkZSUyMHRvZG98ZW58MHx8MHx8fDA%3D');
     margin: 0;
     padding: 0;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
   }
   
-  .container {
-    max-width: 800px;
-    margin: 50px auto;
+  header {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Soporte para Safari */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    text-align: center;
+    color: #333;
+    border: #fff solid 1px;
+
+  }
+  .container {
+    background-color: rgba(255, 255, 255, 0.1);
+    max-width: 80%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Soporte para Safari */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+    text-align: center;
+    color: #333;
+    border: #fff solid 1px;
   }
   
   h1 {
@@ -37,5 +59,25 @@ body {
   .card img {
     width: 100%;
     height: auto;
+  }
+
+  .card {
+    width: 300px; /* Ajusta el ancho según tus necesidades */
+    height: 200px; /* Ajusta la altura según tus necesidades */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    overflow: hidden; /* Oculta cualquier parte de la imagen que sobresalga del contenedor */
+    border-radius: 10px; /* Opcional: añade bordes redondeados al contenedor */
+  }
+  
+  .image-crop {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Recorta la imagen para que cubra todo el contenedor */
+    object-position: center; /* Centra la imagen dentro del contenedor */
   }
   
