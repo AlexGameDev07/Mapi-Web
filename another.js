@@ -1,5 +1,4 @@
 function getWaifus() {
-    let type = document.getElementById("type").value.toLowerCase();
     let category = document.getElementById("category").value.toLowerCase();
     const apiUrl = 'https://api.waifu.im/search';
   
@@ -8,8 +7,7 @@ function getWaifus() {
   
     // Construimos los parámetros de la solicitud
     const params = {
-      included_tags: [category],
-      is_nsfw: type === 'nsfw' // Condición para imágenes NSFW
+      included_tags: [category] // Condición para imágenes NSFW
     };
   
     const queryParams = new URLSearchParams();
