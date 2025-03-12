@@ -7,6 +7,16 @@ body {
     background-position: center;
     background-attachment: fixed;
   }
+    .modal-body img {
+      max-height: 80vh;
+      /* Ajusta la altura máxima al 100% de la altura de la ventana */
+      width: auto;
+      /* Mantiene la proporción del ancho */
+      display: block;
+      /* Quita el margen inferior */
+      margin: 0 auto;
+      /* Centra la imagen horizontalmente */
+    }
   
   header {
     background-color: rgba(255, 255, 255, 0.1);

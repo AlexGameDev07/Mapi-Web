@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const nsfwCheckbox = document.getElementById("nsfw");
 
   function getBg() {
-    let category = document.getElementById("category").value.toLowerCase();
+    let category = "maid";
     const apiUrl = "https://api.waifu.im/search";
     const limit = 1; // Número de imágenes a cargar
     const isNsfw = document.getElementById("nsfw").checked;
@@ -42,9 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("loading").style.display = "none";
 
         if (data.images && data.images.length > 0) {
-          const cardsContainer = document.getElementById("waifu-cards");
-          cardsContainer.innerHTML = "";
-          const imageUrl = data.images[Math.floor(Math.random() * 20)].url;
+          const imageUrl =
+            data.images[Math.floor(Math.random() * data.images.length)].url;
           document.body.style.backgroundImage = `url('${imageUrl}')`;
         } else {
           document.getElementById("error").textContent =
@@ -59,6 +58,9 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("loading").style.display = "none";
       });
   }
+
+  // Cargar fondo inicial (normal)
+  getBg();
 
   function loadCategories(isNsfw) {
     const url = "https://api.waifu.im/tags";
@@ -97,9 +99,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Agregar evento para cambiar categorías y fondo al marcar/desmarcar el checkbox NSFW
   nsfwCheckbox.addEventListener("change", () => {
     loadCategories(nsfwCheckbox.checked);
+    getBg();
   });
-
-  // Cambiar fondo inicial (normal)
 });
 
 function getWaifus() {
@@ -148,11 +149,9 @@ function getWaifus() {
           const card = document.createElement("div");
           card.className = "card";
           card.innerHTML = `
-            <img class="image-crop" src="${imageData.url}" alt="${category} image">
+            <img class="image-crop" src="${imageData.url}" alt="${category} image" onclick="showImageModal('${imageData.url}')">
           `;
           cardsContainer.appendChild(card);
-          const imageUrl = data.images[Math.floor(Math.random() * 20)].url;
-          document.body.style.backgroundImage = `url('${imageUrl}')`;
         });
       } else {
         document.getElementById("error").textContent =
@@ -166,4 +165,11 @@ function getWaifus() {
       // Ocultar pantalla de carga en caso de error
       document.getElementById("loading").style.display = "none";
     });
+}
+
+function showImageModal(imageUrl) {
+  const modalImage = document.getElementById("modalImage");
+  modalImage.src = imageUrl;
+  const imageModal = new bootstrap.Modal(document.getElementById("imageModal"));
+  imageModal.show();
 }
