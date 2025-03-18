@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const typeCheckbox = document.getElementById("nsfw"); // Usar el id correcto del checkbox
+  const typeCheckbox = document.getElementById("nsfw");
   const categorySelect = document.getElementById("category");
 
   const categories = {
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function getBg() {
     let type = typeCheckbox.checked ? "nsfw" : "sfw";
     let category = categorySelect.value;
-    if (!category) return; // Evitar errores si no hay categoría seleccionada
+    if (!category) return;
 
     const url = `https://api.waifu.pics/${type}/${category}`;
 
@@ -42,9 +42,11 @@ document.addEventListener("DOMContentLoaded", () => {
   function getWaifus() {
     let type = typeCheckbox.checked ? "nsfw" : "sfw";
     let category = categorySelect.value;
-    if (!category) return; // Evitar errores si no hay categoría seleccionada
+    if (!category) return;
 
     const url = `https://api.waifu.pics/many/${type}/${category}`;
+
+    document.getElementById("loading-overlay").style.display = "flex";
 
     fetch(url, {
       method: "POST",
@@ -56,23 +58,54 @@ document.addEventListener("DOMContentLoaded", () => {
         if (data.files && data.files.length > 0) {
           const cardsContainer = document.getElementById("waifu-cards");
           cardsContainer.innerHTML = "";
+
+          let loadedImages = 0;
           data.files.forEach(imageUrl => {
             const card = document.createElement("div");
             card.className = "card";
-            card.innerHTML = `<img class="image-crop" src="${imageUrl}" alt="${category} image">`;
+
+            const img = document.createElement("img");
+            img.className = "image-crop";
+            img.src = imageUrl;
+            img.alt = `${category} image`;
+
+            img.addEventListener("click", () => openModal(imageUrl));
+
+            img.onload = () => {
+              loadedImages++;
+              if (loadedImages === data.files.length) {
+                document.getElementById("loading-overlay").style.display = "none";
+              }
+            };
+
+            card.appendChild(img);
             cardsContainer.appendChild(card);
           });
         } else {
           document.getElementById("error").textContent = "No se encontraron imágenes.";
+          document.getElementById("loading-overlay").style.display = "none";
         }
       })
       .catch(error => {
         console.error("Error:", error);
         document.getElementById("error").textContent = "Ocurrió un error al obtener las imágenes.";
+        document.getElementById("loading-overlay").style.display = "none";
       });
   }
 
-  window.getWaifus = getWaifus; // Hacer disponible la función en el ámbito global
+  function openModal(imageUrl) {
+    const modalImage = document.getElementById("modalImage");
+    const downloadBtn = document.getElementById("downloadImage");
+
+    modalImage.src = imageUrl;
+    modalImage.alt = "Imagen en grande";
+    downloadBtn.href = imageUrl;
+    downloadBtn.download = "imagen_grande.jpg";
+
+    new bootstrap.Modal(document.getElementById("imageModal")).show();
+  }
+
+  window.getWaifus = getWaifus;
 
   typeCheckbox.addEventListener("change", () => {
     updateCategoryOptions();

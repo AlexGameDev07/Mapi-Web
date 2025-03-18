@@ -1,116 +1,241 @@
+/* General */
 body {
-  font-family: Arial, sans-serif;
-
+  font-family: "Poppins", Arial, sans-serif;
   margin: 0;
   padding: 0;
+  background: linear-gradient(135deg, #f3f3f3, #d8d8d8);
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-}
-
-.modal-body img {
-  max-height: 80vh;
-  /* Ajusta la altura máxima al 100% de la altura de la ventana */
-  width: auto;
-  /* Mantiene la proporción del ancho */
-  display: block;
-  /* Quita el margen inferior */
-  margin: 0 auto;
-  /* Centra la imagen horizontalmente */
-}
-
-header {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  /* Soporte para Safari */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin: 20px;
-  text-align: center;
-  color: #333;
-  border: #fff solid 1px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header */
+header {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  padding: 15px 20px;
+  margin: 20px;
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  justify-content: space-around;
+  justify-self: center;
+  gap: 15px;
+  align-items: center;
+  width: 90%;
 }
 
-.container {
-  background-color: rgba(255, 255, 255, 0.1);
-  max-width: 80%;
+header .input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Botones y Select */
+button,
+select {
+  font-size: 16px;
+  padding: 10px 20px;
   border-radius: 10px;
+  border: none;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+
+button {
+  background: #ff4e50;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ff7675;
+  transform: scale(1.05);
+}
+
+select {
+  background: white;
+  border: 2px solid #ddd;
+  cursor: pointer;
+}
+
+select:hover {
+  border-color: #aaa;
+}
+
+/* Contenedor */
+.container {
+  background: rgba(255, 255, 255, 0.2);
+  width: 90%;
+  max-width: 1000px;
+  border-radius: 15px;
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  /* Soporte para Safari */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin: 20px;
   text-align: center;
   color: #333;
-  border: #fff solid 1px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
 }
 
+/* Títulos */
 h1 {
-  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
   color: #333;
+  text-transform: uppercase;
+  margin-bottom: 20px;
 }
 
+/* Tarjetas de imágenes */
 .waifu-cards {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 20px;
   justify-content: center;
   margin-top: 20px;
 }
 
 .card {
-  width: 150px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  text-align: center;
-  background-color: #fff;
+  width: 200px;
+  height: 250px;
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+  position: relative;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card .loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f3f3f3;
+  font-size: 14px;
+  color: #666;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Enlaces */
+nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 8px 15px;
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+
+nav a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* Estilos para la pantalla de carga */
+.loader-container {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.loader {
+  border: 6px solid rgba(255, 255, 255, 0.3);
+  border-top: 6px solid white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+/* Animación de carga */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.658);
+  backdrop-filter: blur(15px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  display: none;
+}
+
+.spinner {
+  width: 80px;
+  height: 80px;
+  border: 8px solid rgba(255, 255, 255, 0.3);
+  border-top: 8px solid #fff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#waifu-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.card {
+  width: 200px;
+  /* Ajusta según sea necesario */
+  height: 200px;
+  /* Ajusta según sea necesario */
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
 }
 
 .card img {
   width: 100%;
-  height: auto;
-}
-
-.card {
-  width: 300px;
-  /* Ajusta el ancho según tus necesidades */
-  height: 200px;
-  /* Ajusta la altura según tus necesidades */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  overflow: hidden;
-  /* Oculta cualquier parte de la imagen que sobresalga del contenedor */
-  border-radius: 10px;
-  /* Opcional: añade bordes redondeados al contenedor */
-}
-
-.image-crop {
-  width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Recorta la imagen para que cubra todo el contenedor */
-  object-position: center;
-  /* Centra la imagen dentro del contenedor */
-}
-
-nav a {
-  text-decoration: none;
-  color: rgb(255, 255, 255);
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 800;
-  background-color: rgba(0, 0, 0, 0.233);
-  padding: 5px;
+  /* Esto hará que la imagen cubra todo el espacio sin deformarse */
   border-radius: 10px;
 }

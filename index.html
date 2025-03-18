@@ -39,6 +39,31 @@
     </div>
   </div>
 
+  <!-- Modal -->
+  <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="imageModalLabel">Imagen en grande</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img id="modalImage" src="" alt="Imagen en grande" class="img-fluid">
+          <br>
+          <a id="downloadImage" href="#" class="btn btn-primary mt-3" download target="_blank">
+            Abrir
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div id="loading-overlay">
+    <div class="spinner"></div>
+  </div>
 
   <script defer src="scripts/waifuPics.js"></script>
   <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
