@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const nsfwCheckbox = document.getElementById("nsfw");
 
   function getBg() {
-    let category = "maid";
+    let category = categorySelect.value || "maid";;
     const apiUrl = "https://api.waifu.im/search";
     const limit = 1; // Número de imágenes a cargar
     const isNsfw = document.getElementById("nsfw").checked;
@@ -101,7 +101,11 @@ document.addEventListener("DOMContentLoaded", () => {
     loadCategories(nsfwCheckbox.checked);
     getBg();
   });
+  // Agregar evento para cambiar categorías y fondo al seleccionar una nueva categoría
+  categorySelect.addEventListener("change", getBg);
 });
+
+
 
 function getWaifus() {
   let category = document.getElementById("category").value.toLowerCase();
