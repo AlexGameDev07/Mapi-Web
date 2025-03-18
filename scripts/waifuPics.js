@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let category = categorySelect.value;
     if (!category) return;
 
+    const imageCount = document.getElementById("imageCount").value || 20; // Default to 20 if not set
     const url = `https://api.waifu.pics/many/${type}/${category}`;
 
     document.getElementById("loading-overlay").style.display = "flex";
@@ -51,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ exclude: [] })
+      body: JSON.stringify({ exclude: [], limit: imageCount })
     })
       .then(response => response.json())
       .then(data => {
@@ -92,6 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("loading-overlay").style.display = "none";
       });
   }
+
 
   function openModal(imageUrl) {
     const modalImage = document.getElementById("modalImage");
