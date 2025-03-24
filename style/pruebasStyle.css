@@ -1,0 +1,320 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+body{
+	font-size: 17px;
+	line-height: 30px;
+	font-weight: 400;
+	-moz-osx-font-smoothing: grayscale;
+	word-break: break-word;
+	-webkit-font-smoothing: antialiased;
+  font-family: "DM Sans", sans-serif;
+  margin: 0;
+  overflow-x: hidden;
+  color: #fff;
+  background-color: #1a1a1a;
+}
+body, div {
+	margin: 0;
+	padding: 0;
+}
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+img {
+	-ms-interpolation-mode: bicubic;
+	border: 0;
+	vertical-align: middle;
+	max-width: 100%;
+	height: auto;
+}
+/* ============ Full Page Slider ================= */
+.creative-photography--slider {
+    background-color: #121212;
+    padding: 0px 100px 100px 0px;
+    position: relative;
+}
+.photography-slider--item {
+    position: relative;
+    overflow: hidden;
+    height: calc(100vh - 100px);
+}
+.photography-slider--layer {
+    position: absolute;
+    top: 0px;
+    z-index: 1;
+    left: auto;
+    right: 45%;
+}
+.photography-slider--layer img{
+    width: 100%;
+}
+.photography-slider--content {
+    position: relative;
+    height: 100%;
+    margin-top: 100px;
+}
+.photography-slider--content .photography-slider--image {
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: all 2s linear;
+    -moz-transition: all 2s linear;
+    transition: all 2s linear;
+    position: relative;
+    max-width: 72.917vw;
+    margin-left: auto;
+    opacity: 1;
+}
+.photography-slider--content .photography-slider--image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.photography-slider--inner {
+    position: absolute;
+    left: -16.5vw;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    transform-origin: center;
+    z-index: 2;
+}
+.photography-slider--inner .photography-heading {
+    margin-bottom: 0px;
+    position: relative;
+}
+.photography-slider--inner .photography-heading .photography-item--title{
+    font-size: 11.296vh;
+    line-height: 11.296vh;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0px;
+    letter-spacing: 0px;
+    opacity: 1;
+    transform: translateX(0px);
+    -webkit-transition: all 2.5s ease;
+    -moz-transition: all 2.5s ease;
+    transition: all 2.5s ease;
+    transform-origin: top;
+    z-index: 1;
+    position: relative;
+    opacity: 0;
+    transform-origin: top;
+    transform: translateX(200px);
+    -webkit-transition: all 2.5s ease;
+    -moz-transition: all 2.5s ease;
+    transition: all 2.5s ease;
+}
+.photography-slider--inner .photography-heading .photography-item--title-outline{
+    font-size: 20.111vh;
+    line-height: normal;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #2F2F2F;
+    z-index: 0;
+    position: absolute;
+    bottom: -4.083vw;
+    opacity: 1;
+    transform: translateX(0px);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0px;
+    letter-spacing: 0px;
+    transform-origin: top;
+    -webkit-transition: all 2s ease;
+    -moz-transition: all 2s ease;
+    transition: all 2s ease;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+    transform-origin: top;
+    transform: translateX(200px);
+    -webkit-transition: all 2s ease;
+    -moz-transition: all 2s ease;
+    transition: all 2s ease;
+}
+.swiper-slide-active .photography-heading .photography-item--title {
+    opacity: 1;
+    transform: translateX(0px);
+}
+.swiper-slide-active .photography-heading .photography-item--title-outline {
+    opacity: 1;
+    transform: translateX(0px);
+}
+.creative-photography--slider .creative-swiper--dots .swiper-pagination{
+    counter-reset: numbers;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    bottom: 0;
+    margin-top: 0px;
+    left: 25px;
+    width: 100%;
+}
+.creative-photography--slider .creative-swiper--dots .swiper-pagination span{
+    position: static;
+    background: #fff;
+    width: 10px;
+    height: 10px;
+    background-color: #ffffff;
+    border: 1px solid transparent;
+    border-radius: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 14px;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+    opacity: 1;
+    font-size: 14px;
+    font-weight: 600;
+}
+.creative-swiper--dots .swiper-pagination span.swiper-pagination-bullet-active{
+   background-color: #b90808; 
+}
+.creative-swiper--dots .swiper-pagination .swiper-pagination-bullet::after {
+    content: '';
+    font-size: 24px;
+    font-weight: 600;
+    counter-increment: numbers;
+    content: "0" counter(numbers);
+    color: #b90808;
+    position: absolute;
+    bottom: calc(100% + 20px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease-in-out;
+}
+.creative-swiper--dots .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active::after {
+    opacity: 1;
+    visibility: visible;
+}
+.creative-photography--slider .creative-photography--sidebar{
+    width: 100px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.creative-photography--sidebar ul{
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.creative-photography--sidebar ul li{
+    position: relative;
+    transform: rotate(90deg);
+}
+.creative-photography--sidebar ul li a{
+    font-size: 13px;
+    line-height: 15px;
+    width: 50px;
+    height: 27px;
+    border-radius: 100%;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    position: relative;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    transition: all .25s cubic-bezier(.645, .045, .355, 1);
+}
+.creative-photography--sidebar ul li a:hover{
+    border-color: #b90808;
+    background-color: #b90808;
+    color: #ffffff;
+    transform: translateY(-3px);
+}
+
+/* ======================= Responsive Ipad Pro ============================== */
+@media screen and (max-width: 1366px) {
+    .photography-slider--inner .photography-heading .photography-item--title-outline {
+        font-size: 15.67vh;
+        line-height: 15.65vh;
+        bottom: -3.083vw;
+    }
+    .photography-slider--inner .photography-heading .photography-item--title span{
+        font-size: 9.444vh;
+        font-family: inherit;
+        font-style: inherit;
+        font-weight: inherit;
+        background-color: #0f0f0f;
+        display: inline-block;
+    }
+}
+/* ======================= Responsive Ipad ============================== */
+@media screen and (max-width: 991px) {
+    .photography-slider--content .photography-slider--image {
+        max-width: 100vw;
+    }
+    .photography-slider--inner{
+        left: 30px;
+        top: 60%;
+        transform: translateY(-50%) rotate(0deg);
+    }
+    .photography-slider--inner .photography-heading .photography-item--title span{
+        background-color: transparent;
+    }
+    .photography-slider--content{
+        margin-top: 0px;
+    }
+    .creative-photography--slider .creative-swiper--dots .swiper-pagination{
+        bottom: 60%;
+        left: 10px;
+    }
+}
+/* ======================= Responsive Ipad ============================== */
+@media screen and (max-width: 460px) {
+    .creative-photography--slider{
+        padding: 0px;
+    }
+    .creative-photography--slider .photography-slider--inner{
+        top: 50%;
+        width: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+        left: 0px;
+    }
+    .photography-slider--inner .photography-heading .photography-item--title{
+        font-size: 8.296vh;
+        line-height: 8.296vh;
+    }
+    .photography-slider--inner .photography-heading .photography-item--title span{
+       font-size: 8.296vh; 
+   }
+   .photography-slider--inner .photography-heading .photography-item--title-outline {
+    font-size: 8.296vh;
+    line-height: 8.296vh;
+    bottom: -0.083vw;
+}
+.creative-photography--slider .creative-photography--sidebar{
+    top: 35px;
+    justify-content: start;
+}
+.creative-photography--slider .creative-swiper--dots .swiper-pagination{
+    bottom: 90px;
+    left: 0;
+    flex-direction: row;
+    justify-content: center;
+}
+.creative-photography--slider .creative-swiper--dots .swiper-pagination span{
+    margin: 0 5px;
+}
+}

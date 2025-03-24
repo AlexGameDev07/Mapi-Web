@@ -44,7 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let category = categorySelect.value;
     if (!category) return;
 
-    const imageCount = document.getElementById("imageCount").value || 20; // Default to 20 if not set
+    const imageCount = parseInt(document.getElementById("imageCount").value) || 20;
+
     const url = `https://api.waifu.pics/many/${type}/${category}`;
 
     document.getElementById("loading-overlay").style.display = "flex";
@@ -61,7 +62,9 @@ document.addEventListener("DOMContentLoaded", () => {
           cardsContainer.innerHTML = "";
 
           let loadedImages = 0;
-          data.files.forEach(imageUrl => {
+          const limitedImages = data.files.slice(0, imageCount);
+          limitedImages.forEach(imageUrl => {
+
             const card = document.createElement("div");
             card.className = "card";
 
@@ -69,6 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
             img.className = "image-crop";
             img.src = imageUrl;
             img.alt = `${category} image`;
+            img.loading = "lazy";
 
             img.addEventListener("click", () => openModal(imageUrl));
 

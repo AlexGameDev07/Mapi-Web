@@ -100,7 +100,7 @@ function getWaifus() {
                const card = document.createElement("div");
                card.className = "card";
                card.innerHTML = `
-            <img class="image-crop" src="${imageData.preview_url}" alt="${tags} image" onclick="showImageModal('${imageData.file_url}')">
+            <img class="image-crop" src="${imageData.preview_url}" alt="${tags} image" onclick="showImageModal('${imageData.file_url}') loading="lazy">
           `;
                cardsContainer.appendChild(card);
             });
