@@ -39,65 +39,64 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-  function getWaifus() {
-    let type = typeCheckbox.checked ? "nsfw" : "sfw";
-    let category = categorySelect.value;
-    if (!category) return;
-
-    const imageCount = parseInt(document.getElementById("imageCount").value) || 20;
-
-    const url = `https://api.waifu.pics/many/${type}/${category}`;
-
-    document.getElementById("loading-overlay").style.display = "flex";
-
-    fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ exclude: [], limit: imageCount })
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data.files && data.files.length > 0) {
-          const cardsContainer = document.getElementById("waifu-cards");
-          cardsContainer.innerHTML = "";
-
-          let loadedImages = 0;
-          const limitedImages = data.files.slice(0, imageCount);
-          limitedImages.forEach(imageUrl => {
-
-            const card = document.createElement("div");
-            card.className = "card";
-
-            const img = document.createElement("img");
-            img.className = "image-crop";
-            img.src = imageUrl;
-            img.alt = `${category} image`;
-            img.loading = "lazy";
-
-            img.addEventListener("click", () => openModal(imageUrl));
-
-            img.onload = () => {
-              loadedImages++;
-              if (loadedImages === data.files.length) {
-                document.getElementById("loading-overlay").style.display = "none";
-              }
-            };
-
-            card.appendChild(img);
-            cardsContainer.appendChild(card);
-          });
-        } else {
-          document.getElementById("error").textContent = "No se encontraron imágenes.";
-          document.getElementById("loading-overlay").style.display = "none";
-        }
-      })
-      .catch(error => {
-        console.error("Error:", error);
-        document.getElementById("error").textContent = "Ocurrió un error al obtener las imágenes.";
-        document.getElementById("loading-overlay").style.display = "none";
-      });
+  function showLoading() {
+    const loadingOverlay = document.getElementById('loading-overlay');
+    loadingOverlay.style.display = 'flex'; // Mostrar la pantalla de carga
   }
 
+  function hideLoading() {
+    const loadingOverlay = document.getElementById('loading-overlay');
+    loadingOverlay.style.display = 'none'; // Ocultar la pantalla de carga
+  }
+
+  async function getWaifus() {
+    try {
+      showLoading(); // Mostrar la pantalla de carga al iniciar la búsqueda
+
+      const category = document.getElementById('category').value;
+      const nsfw = document.getElementById('nsfw').checked;
+      const imageCount = parseInt(document.getElementById('imageCount').value, 10);
+
+      if (!category) {
+        throw new Error('Por favor selecciona una categoría.');
+      }
+
+      const images = [];
+      for (let i = 0; i < imageCount; i++) {
+        const response = await fetch(`https://api.waifu.pics/${nsfw ? 'nsfw' : 'sfw'}/${category}`);
+        if (!response.ok) {
+          throw new Error('Error al obtener las imágenes.');
+        }
+
+        const data = await response.json();
+        if (data.url) {
+          images.push(data.url); // Agregar la URL de la imagen al array
+        } else {
+          throw new Error('La respuesta de la API no contiene una URL de imagen.');
+        }
+      }
+
+      displayImages(images); // Mostrar las imágenes obtenidas
+    } catch (error) {
+      const errorDiv = document.getElementById('error');
+      errorDiv.textContent = error.message;
+    } finally {
+      hideLoading(); // Ocultar la pantalla de carga al finalizar
+    }
+  }
+
+  function displayImages(images) {
+    const waifuCards = document.getElementById('waifu-cards');
+    waifuCards.innerHTML = ''; // Limpiar contenido previo
+
+    images.forEach((image) => {
+      const imgElement = document.createElement('img');
+      imgElement.src = image;
+      imgElement.alt = 'Waifu';
+      imgElement.className = 'waifu-image';
+      waifuCards.appendChild(imgElement);
+    });
+  }
 
   function openModal(imageUrl) {
     const modalImage = document.getElementById("modalImage");
