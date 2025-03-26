@@ -90,11 +90,17 @@ document.addEventListener("DOMContentLoaded", () => {
     waifuCards.innerHTML = ''; // Limpiar contenido previo
 
     images.forEach((image) => {
+      const card = document.createElement('div'); // Crear un contenedor para la tarjeta
+      card.className = 'card'; // Aplicar la clase 'card'
+
       const imgElement = document.createElement('img');
       imgElement.src = image;
       imgElement.alt = 'Waifu';
-      imgElement.className = 'waifu-image';
-      waifuCards.appendChild(imgElement);
+      imgElement.className = 'waifu-image'; // Clase para la imagen
+      imgElement.onclick = () => openModal(image); // Agregar evento onclick
+
+      card.appendChild(imgElement); // Agregar la imagen al contenedor
+      waifuCards.appendChild(card); // Agregar la tarjeta al contenedor principal
     });
   }
 
@@ -102,12 +108,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalImage = document.getElementById("modalImage");
     const downloadBtn = document.getElementById("downloadImage");
 
-    modalImage.src = imageUrl;
+    modalImage.src = imageUrl; // Establecer la URL de la imagen en el modal
     modalImage.alt = "Imagen en grande";
-    downloadBtn.href = imageUrl;
+    downloadBtn.href = imageUrl; // Establecer el enlace de descarga
     downloadBtn.download = "imagen_grande.jpg";
 
-    new bootstrap.Modal(document.getElementById("imageModal")).show();
+    // Mostrar el modal usando Bootstrap
+    const modal = new bootstrap.Modal(document.getElementById("imageModal"));
+    modal.show();
   }
 
   window.getWaifus = getWaifus;
