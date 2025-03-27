@@ -76,12 +76,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
+      console.log(images); // Verifica las URLs de las imágenes
       displayImages(images); // Mostrar las imágenes obtenidas
     } catch (error) {
       const errorDiv = document.getElementById('error');
       errorDiv.textContent = error.message;
     } finally {
       hideLoading(); // Ocultar la pantalla de carga al finalizar
+      // Ocultar la sección de información y mostrar la de imágenes
+      document.getElementById('info-container').classList.add('d-none');
+      document.getElementById('images-container').classList.remove('d-none');
     }
   }
 
@@ -118,6 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.show();
   }
 
+  // Exponer la función al ámbito global
   window.getWaifus = getWaifus;
 
   typeCheckbox.addEventListener("change", () => {
@@ -130,3 +135,25 @@ document.addEventListener("DOMContentLoaded", () => {
   updateCategoryOptions();
   getBg();
 });
+
+document.getElementById('nsfw').addEventListener('change', (event) => {
+  if (event.target.checked) {
+    const nsfwModal = new bootstrap.Modal(document.getElementById('nsfwModal'));
+    nsfwModal.show();
+
+    // Desmarcar la casilla hasta que se confirme
+    event.target.checked = false;
+
+    // Confirmar activación de NSFW
+    document.getElementById('confirmNsfw').onclick = () => {
+      event.target.checked = true; // Activar NSFW
+      nsfwModal.hide(); // Cerrar el modal
+    };
+  }
+});
+
+function goBack() {
+  // Ocultar la sección de imágenes y mostrar la de información
+  document.getElementById('images-container').classList.add('d-none');
+  document.getElementById('info-container').classList.remove('d-none');
+}

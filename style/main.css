@@ -266,3 +266,81 @@ nav a:hover {
   justify-content: center;
   
 }
+
+/* Redondear las esquinas del selector de números */
+input[type="number"].rounded-end {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* Estilo adicional para el navbar */
+.navbar {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.nav-link {
+  font-size: 1rem;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  color: #ff4e50;
+}
+
+/* Unificar estilo de select, checkbox y input[type="number"] */
+.input-group .col-form-control,
+.input-group .form-check-input,
+.input-group input[type="number"] {
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover para todos los elementos */
+.input-group .col-form-control:hover,
+.input-group .form-check-input:hover,
+.input-group input[type="number"]:hover {
+  border-color: #aaa;
+}
+
+/* Estilo específico para el checkbox */
+.input-group .form-check-input {
+  width: 20px;
+  height: 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 2px solid #ddd;
+}
+
+/* Redondear esquinas del input[type="number"] */
+input[type="number"].rounded-end {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* Estilo adicional para el select */
+select.col-form-control {
+  border-radius: 10px;
+}
+
+/* Super div con diseño de glass */
+.glass-container {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.d-none {
+  display: none !important;
+}
