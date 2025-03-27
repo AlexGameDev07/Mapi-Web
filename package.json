@@ -1,5 +1,9 @@
 {
   "dependencies": {
-    "hmfull": "^2.4.3"
+    "hmfull": "^2.4.3",
+    "three": "^0.174.0"
+  },
+  "devDependencies": {
+    "vite": "^6.2.3"
   }
 }

@@ -38,25 +38,24 @@
 
     <!-- Super div con diseño de glass -->
     <div class="container glass-container">
+      <!-- Opciones -->
+      <div class="input-group justify-content-center mb-4">
+        <select class="col-form-control" id="category">
+          <option value="" disabled selected>Selecciona una categoría</option>
+        </select>
+        <div class="input-group-text">
+          <input class="form-check-input mt-0" type="checkbox" id="nsfw" aria-label="NSFW">
+          NSFW
+        </div>
+        <input class="col-form-control rounded-end" type="number" id="imageCount" min="5" max="30" step="5" value="10" placeholder="Número de imágenes">
+      </div>
+
+      <button class="btn btn-primary" onclick="getWaifus()">Buscar</button>
       <!-- Sección de información -->
       <div id="info-container" class="text-center">
         <h1>Generador de Imágenes Waifu Pics</h1>
         <p class="lead">Genera imágenes de waifus desde la API de Waifu.pics. Selecciona una categoría, ajusta las opciones y haz clic en "Buscar".</p>
         <p class="text-danger"><strong>Advertencia:</strong> El contenido NSFW está restringido y requiere confirmación.</p>
-
-        <!-- Opciones -->
-        <div class="input-group justify-content-center mb-4">
-          <select class="col-form-control" id="category">
-            <option value="" disabled selected>Selecciona una categoría</option>
-          </select>
-          <div class="input-group-text">
-            <input class="form-check-input mt-0" type="checkbox" id="nsfw" aria-label="NSFW">
-            NSFW
-          </div>
-          <input class="col-form-control rounded-end" type="number" id="imageCount" min="5" max="30" step="5" value="10" placeholder="Número de imágenes">
-        </div>
-
-        <button class="btn btn-primary" onclick="getWaifus()">Buscar</button>
       </div>
 
       <!-- Sección de imágenes -->
